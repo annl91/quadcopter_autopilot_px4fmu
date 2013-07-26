@@ -1872,7 +1872,7 @@ int commander_thread_main(int argc, char *argv[])
 						stick_off_counter = 0;
 					}
 				}
-
+				//printf("state = %i \n", current_status.state_machine);
 				/* check manual override switch - switch to manual or auto mode */
 				if (sp_man.manual_override_switch > STICK_ON_OFF_LIMIT) {
 					/* enable manual override */
@@ -1892,6 +1892,7 @@ int commander_thread_main(int argc, char *argv[])
 
 				} else {
 					/* center stick position, set SAS for all vehicle types */
+					printf("override switch stabilized\n");
 					update_state_machine_mode_stabilized(stat_pub, &current_status, mavlink_fd);
 				}
 

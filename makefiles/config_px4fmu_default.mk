@@ -51,6 +51,12 @@ MODULES		+= systemcmds/top
 MODULES		+= systemcmds/tests
 
 #
+# custom modules
+#
+MODULES		+= modules/px4_simple_app
+MODULES		+= modules/multirotor_hold_pos_control
+
+#
 # General system control
 #
 MODULES		+= modules/commander

@@ -218,6 +218,7 @@ mc_thread_main(int argc, char *argv[])
 
 				/** STEP 1: Define which input is the dominating control input */
 				if (state.flag_control_offboard_enabled) {
+					//printf("attitude control - offboard input\n");
 					/* offboard inputs */
 					if (offboard_sp.mode == OFFBOARD_CONTROL_MODE_DIRECT_RATES) {
 						rates_sp.roll = offboard_sp.p1;
@@ -241,7 +242,7 @@ mc_thread_main(int argc, char *argv[])
 
 
 				} else if (state.flag_control_manual_enabled) {
-
+					//printf("attitude control - manual input\n");
 					if (state.flag_control_attitude_enabled) {
 
 						/* initialize to current yaw if switching to manual or att control */
@@ -360,6 +361,9 @@ mc_thread_main(int argc, char *argv[])
 						}
 					}
 
+				}
+				else{
+					//printf("attitude control - onboard auto input\n");
 				}
 
 				/** STEP 3: Identify the controller setup to run and set up the inputs correctly */

@@ -173,10 +173,9 @@ int do_state_update(int status_pub, struct vehicle_status_s *current_status, con
 	case SYSTEM_STATE_AUTO:
 
 		/* set system flags according to state */
-
+		
 		/* auto is airborne and in auto mode, motors armed */
 		current_status->flag_system_armed = true;
-
 		mavlink_log_critical(mavlink_fd, "Switched to FLYING / AUTO mode");
 		break;
 
@@ -192,7 +191,6 @@ int do_state_update(int status_pub, struct vehicle_status_s *current_status, con
 
 		/* set system flags according to state */
 		current_status->flag_system_armed = true;
-
 		mavlink_log_critical(mavlink_fd, "Switched to FLYING / MANUAL mode");
 		break;
 
@@ -608,13 +606,15 @@ void update_state_machine_mode_guided(int status_pub, struct vehicle_status_s *c
 
 void update_state_machine_mode_auto(int status_pub, struct vehicle_status_s *current_status, const int mavlink_fd)
 {
+/*
 	if (!current_status->flag_vector_flight_mode_ok) {
+		printf("redject auto mode\n");
 		mavlink_log_critical(mavlink_fd, "NO POS LOCK, REJ. AUTO MODE");
 		return;
 	}
-
+*/
 	if (current_status->state_machine == SYSTEM_STATE_GROUND_READY || current_status->state_machine == SYSTEM_STATE_MANUAL || current_status->state_machine == SYSTEM_STATE_STABILIZED) {
-		printf("[cmd] auto mode\n");
+		//printf("[cmd] auto mode\n");
 		int old_mode = current_status->flight_mode;
 		current_status->flight_mode = VEHICLE_FLIGHT_MODE_AUTO;
 		current_status->flag_control_manual_enabled = false;
